@@ -1,0 +1,35 @@
+.cz{position:relative;height:380vh;background:#0D0D0D}
+.cz-pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.cz-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.02em;font-weight:800;line-height:.86;letter-spacing:-.045em;font-size:clamp(84px,21vw,330px);color:#fff;pointer-events:none;padding-bottom:4vh}
+.cz-title span{display:block;white-space:nowrap}
+.cz-out{color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.85)}
+.cz-strip{font-size:clamp(12px,1.4vw,18px);letter-spacing:.32em;font-weight:700;color:#737373;margin-top:3vh}
+.cz-row{position:relative;z-index:2;display:flex;justify-content:center;gap:clamp(10px,1.6vw,26px);padding:0 16px;width:100%}
+.cz-slot{flex:0 0 auto}
+.cz-card{width:clamp(150px,16.5vw,268px);aspect-ratio:3/4;border-radius:18px;padding:18px;display:flex;flex-direction:column;
+background:linear-gradient(165deg,#222 0%,#101010 100%);border:1px solid #2c2c2c;box-shadow:0 40px 60px -30px #000;position:relative;overflow:hidden;
+transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .3s;color:#fff;cursor:default}
+.cz-card::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:#FF4D00;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cz-card:hover,.cz-card:focus-visible{transform:translateY(-14px) scale(1.03);border-color:#444}
+.cz-card:hover::after,.cz-card:focus-visible::after{transform:scaleX(1)}
+.cz-vis{flex:1;display:grid;place-items:center;min-height:0}
+.cz-card h3{font-size:clamp(11px,1vw,13px);letter-spacing:.16em;color:#FF4D00;margin-bottom:6px}
+.cz-card p{font-size:clamp(13px,1.25vw,17px);font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.cz-sw{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:62%}
+.cz-sw i{aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.2)}
+.cz-no{font-size:clamp(70px,9vw,150px);font-weight:800;letter-spacing:-.06em;line-height:1}
+.cz-nm{font-size:clamp(22px,2.6vw,40px);font-weight:800;letter-spacing:.28em;margin-right:-.28em}
+.cz-mk{width:58%}
+.cz-sp{width:70%;display:flex;flex-direction:column;gap:12px}
+.cz-sp i{display:block;height:12px;border-radius:2px;background:#F5F5F5;opacity:.9}
+@media(max-width:900px){
+.cz-row{flex-wrap:wrap;gap:10px;max-width:420px;margin:0 auto;padding-top:14vh}
+.cz-card{width:28vw;min-width:104px;padding:10px;border-radius:14px}
+.cz-card p{display:none}
+.cz-card h3{font-size:9px;margin:0}
+.cz-title{font-size:clamp(70px,24vw,150px);justify-content:flex-start;padding-top:12vh}
+.cz-strip{display:none}}
+.cz-still{height:auto}
+.cz-still .cz-pin{position:relative;height:auto;min-height:100svh;padding:12vh 0}
+.cz-still .cz-title{position:relative;padding:0 0 6vh}
+@media(max-width:900px){.cz-still .cz-row{padding-top:4vh}}

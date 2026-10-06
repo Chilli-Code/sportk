@@ -1,0 +1,21 @@
+/*
+  Solo lo que Tailwind no cubre.
+
+  1) landing.css tiene reglas globales sin capa (a { color: inherit; text-decoration: none })
+     que ganan a las utilidades de Tailwind. Aquí se devuelven al valor de las capas.
+  2) El anillo de enfoque de los campos lo da Tailwind (ring), no el outline global.
+  3) Grano fino del panel de marca (imagen SVG de fondo).
+*/
+.login a { color: revert-layer; text-decoration: revert-layer; }
+.login input:focus-visible { outline: none; }
+
+.login-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}

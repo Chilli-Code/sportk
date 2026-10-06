@@ -1,0 +1,11 @@
+.atl{display:flex;flex-direction:column;font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.92;color:#fff;margin:0}
+.atl-md{font-size:clamp(32px,6vw,88px)}
+.atl-lg{font-size:clamp(40px,8vw,128px)}
+.atl-xl{font-size:clamp(46px,10vw,168px)}
+.atl-center{align-items:center;text-align:center}
+.atl-left{align-items:flex-start;text-align:left}
+.atl-line{display:flex;flex-wrap:wrap;gap:0 .22em}
+.atl-center .atl-line{justify-content:center}
+.atl-word{display:inline-block;will-change:transform,opacity}
+.atl-word b{color:#FF4D00}
+@media(max-width:560px){.atl-xl{font-size:clamp(38px,12.5vw,80px)}.atl-lg{font-size:clamp(34px,11vw,70px)}}

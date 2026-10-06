@@ -1,0 +1,27 @@
+.ia{background:#050505;padding-top:clamp(80px,12vw,170px)}
+.ia-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding-bottom:clamp(48px,7vw,50px)}
+.ia-head .t-sm{max-width:38ch}
+.ia-eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.3em;color:#A3A3A3}
+.ia-eyebrow i{display:block;width:28px;height:1px;background:#FF4D00}
+/* Título animado */
+.at{display:flex;flex-direction:column;align-items:center;font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.92;font-size:clamp(46px,10vw,168px);color:#fff}
+.at-line{display:flex;flex-wrap:wrap;justify-content:center;gap:0 .22em}
+.at-word{display:inline-block;will-change:transform,opacity}
+.at-word b{color:#FF4D00}
+/* Imagen que se expande al hacer scroll */
+.ia-clip{height:270vh}
+.ia-pin{position:sticky;top:0;height:100svh;display:grid;place-items:center;overflow:hidden}
+.ia-box{position:relative;overflow:hidden;background:#0D0D0D;will-change:width,height}
+.ia-img{position:absolute;left:50%;top:50%;width:100vw;height:100svh}
+
+.ia-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ia-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.78),transparent 55%)}
+.ia-ph{width:100%;height:100%;display:grid;place-content:center;gap:8px;text-align:center;color:#555;
+background:repeating-linear-gradient(135deg,#141414 0 18px,#101010 18px 36px)}
+.ia-ph span{font-size:14px;font-weight:800;letter-spacing:.3em}
+.ia-ph small{font-size:12px;letter-spacing:.12em;color:#444}
+.ia-over{position:absolute;left:clamp(20px,6vw,90px);bottom:clamp(28px,9vh,100px);display:flex;align-items:center;gap:18px;font-weight:800;letter-spacing:-.03em;font-size:clamp(28px,5.4vw,84px);color:#fff;pointer-events:none}
+.ia-over span{display:block;width:clamp(28px,5vw,72px);height:2px;background:#FF4D00;flex:0 0 auto}
+.ia-static{height:70vh;position:relative;overflow:hidden}
+.ia-static .ia-ph,.ia-static img{height:100%}
+@media(max-width:700px){.ia-clip{height:230vh}}
