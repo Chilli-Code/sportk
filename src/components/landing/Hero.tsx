@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react'
+import {  useRef, useState } from 'react'
 import {
   motion,
   useMotionValue,
@@ -11,47 +11,9 @@ import { LOGO_MARK, LOGO_VIEWBOX_MARK } from '../../lib/logoPaths'
 import { introWillPlay } from './LogoIntro'
 import '../../styles/hero.css'
 
-// Diseños de ejemplo para futuras imágenes/productos
-const PRESETS = [
-  {
-    body: '#F5F5F5',
-    sleeves: '#141414',
-    collar: '#FF4D00',
-    ink: '#050505',
-    name: 'LYAN',
-    no: '10',
-  },
-  {
-    body: '#1F1F1F',
-    sleeves: '#FF4D00',
-    collar: '#F5F5F5',
-    ink: '#FFFFFF',
-    name: 'EMEL',
-    no: '07',
-  },
-  {
-    body: '#FF4D00',
-    sleeves: '#050505',
-    collar: '#050505',
-    ink: '#050505',
-    name: 'ATLAS',
-    no: '23',
-  },
-  {
-    body: '#737373',
-    sleeves: '#F5F5F5',
-    collar: '#050505',
-    ink: '#FFFFFF',
-    name: 'NOVA',
-    no: '09',
-  },
-]
-
 export default function Hero() {
   const reduce = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
-
-  const [i, setI] = useState(0)
 
   const [d0] = useState(() =>
     introWillPlay() && !reduce ? 2.3 : 0
@@ -68,20 +30,10 @@ export default function Hero() {
     [0, 90]
   )
 
-  useEffect(() => {
-    if (reduce) return
-
-    const id = setInterval(() => {
-      setI((n) => (n + 1) % PRESETS.length)
-    }, 3600)
-
-    return () => clearInterval(id)
-  }, [reduce])
-
   const onMove = (e: React.MouseEvent) => {
     const r = ref.current?.getBoundingClientRect()
 
-    if (!r) return
+    if (!r || !ref.current) return
 
     const x = (e.clientX - r.left) / r.width
     const y = (e.clientY - r.top) / r.height
@@ -89,12 +41,12 @@ export default function Hero() {
     mx.set(x - 0.5)
     my.set(y - 0.5)
 
-    ref.current.style.setProperty(
+    r && ref.current.style.setProperty(
       '--mx',
       `${x * 100}%`
     )
 
-    ref.current.style.setProperty(
+    r && ref.current.style.setProperty(
       '--my',
       `${y * 100}%`
     )
