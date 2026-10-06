@@ -6,7 +6,7 @@ type Props = {
   lines: string[]
   /** Tamaño del título. */
   size?: 'md' | 'lg' | 'xl'
-  align?: 'center' | 'left'
+ align?: 'center' | 'left' | 'right'
   /** Etiqueta HTML. Usa 'h1' solo una vez por página. */
   as?: 'h1' | 'h2' | 'h3' | 'div'
   /** Segundos de espera antes de empezar. */

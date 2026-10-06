@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import type React from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import LandingLayout from '../layouts/LandingLayout'
 import AppLayout from '../layouts/AppLayout'
@@ -6,10 +7,16 @@ import LandingPage from '../pages/landing/LandingPage'
 import LoginPage from '../pages/auth/LoginPage'
 
 const HomePage = lazy(() => import('../pages/app/HomePage'))
-const DesignsPage = lazy(() => import('../pages/app/DesignsPage'))
+const DesignsPage = lazy(
+  () => import('../pages/app/DesignsPage') as Promise<{ default: React.ComponentType<any> }>
+)
+
+const ProfilePage = lazy(
+  () => import('../pages/app/ProfilePage') as Promise<{ default: React.ComponentType<any> }>
+)
 const DesignerPage = lazy(() => import('../pages/app/DesignerPage'))
 const OrdersPage = lazy(() => import('../pages/app/OrdersPage'))
-const ProfilePage = lazy(() => import('../pages/app/ProfilePage'))
+
 
 export const router = createBrowserRouter([
   {
