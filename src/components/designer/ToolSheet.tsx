@@ -3,7 +3,7 @@ import ToolBar from './ToolBar'
 import ToolPanel, { toolTitle } from './ToolPanel'
 import { useViewerStore, type ToolId } from '../../stores/viewerStore'
 
-export const SHEET_H = '44dvh'
+export const SHEET_H = '65dvh'
 
 /** Hoja inferior (móvil vertical). No bloquea la pantalla: la prenda sigue visible y rotable. */
 export default function ToolSheet({ tool }: { tool: ToolId | null }) {

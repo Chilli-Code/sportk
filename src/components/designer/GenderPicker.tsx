@@ -17,7 +17,7 @@ export default function GenderPicker() {
         <p className="mt-2 text-center text-[#A3A3A3]">Elige el corte de la prenda. Podrás cambiarlo después.</p>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5">
           {opts.map((o) => (
-            <button key={o.id} onClick={() => setGender(o.id)}
+            <button key={o.id} onClick={() => { setGender(o.id); useDesignStore.temporal.getState().clear() }}
               className="group flex flex-col items-center rounded-3xl border border-white/10 bg-gradient-to-b from-[#1c1c1c] to-[#0d0d0d] p-4 pb-5 transition-colors hover:border-[#FF4D00] focus-visible:border-[#FF4D00] sm:p-6">
               <svg viewBox="0 0 400 440" className="h-[min(34dvh,240px)] w-full transition-transform duration-500 group-hover:scale-105" aria-hidden>
                 {[FIT[o.id].left, FIT[o.id].right, FIT[o.id].torso].map((p, i) => <path key={i} d={toPath(p)} fill={i < 2 ? '#FF4D00' : '#2b2b2b'} stroke="#3d3d3d" strokeWidth="3" strokeLinejoin="round" />)}

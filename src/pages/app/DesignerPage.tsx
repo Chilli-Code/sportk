@@ -10,12 +10,17 @@ import ToolSheet, { SHEET_H } from '../../components/designer/ToolSheet'
 import ViewControls from '../../components/designer/ViewControls'
 import SaveDialog from '../../components/designer/SaveDialog'
 import GenderPicker from '../../components/designer/GenderPicker'
+import UndoRedo from '../../components/designer/UndoRedo'
+import SaveIndicator from '../../components/designer/SaveIndicator'
+import ResumeBanner from '../../components/designer/ResumeBanner'
+import { useUndoShortcuts } from '../../hooks/useHistory'
 
 // three.js se descarga aparte: el resto de la app no paga su peso.
 const DesignerCanvas = lazy(() => import('../../components/designer/DesignerCanvas'))
 
 export default function DesignerPage() {
   const mode = useLayoutMode()
+  useUndoShortcuts()
   const navigate = useNavigate()
   const name = useDesignStore((s) => s.name)
   const gender = useDesignStore((s) => s.gender)
@@ -30,11 +35,13 @@ export default function DesignerPage() {
       <header className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-white/10 px-3 pt-[env(safe-area-inset-top)] sm:px-5">
         <button onClick={() => navigate('/app')} aria-label="Volver" className="grid size-10 place-items-center rounded-full text-[#D4D4D4] hover:bg-white/5 hover:text-white"><ArrowLeft size={20} /></button>
         <div className="min-w-0 text-center">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-[#737373]">DISEÑADOR</p>
+          <SaveIndicator />
           <p className="truncate text-sm font-bold">{name}</p>
         </div>
-        {gender ? <SaveDialog /> : <span className="size-10" />}
+        {gender ? <div className="flex items-center gap-1"><UndoRedo /><SaveDialog /></div> : <span className="size-10" />}
       </header>
+
+      <ResumeBanner />
 
       {!gender ? (
         <GenderPicker />

@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { Check } from 'lucide-react'
-import { PALETTE, TOOLS } from '../../lib/designerTools'
-import { useDesignStore, type ColorPart, type Garment, type Gender } from '../../stores/designStore'
+import { TOOLS } from '../../lib/designerTools'
+import { useDesignStore, type Garment, type Gender } from '../../stores/designStore'
 import type { ToolId } from '../../stores/viewerStore'
 import ClubPanel from './panels/ClubPanel'
+import ColorPanel from './panels/ColorPanel'
 import PatternPanel from './panels/PatternPanel'
 
 const field = 'h-12 w-full rounded-xl border border-[#2a2a2a] bg-[#141414] px-4 text-[15px] text-white outline-none transition focus:border-[#FF4D00] focus:ring-4 focus:ring-[#FF4D00]/15'
@@ -37,44 +37,6 @@ function Garments() {
           </button>
         ))}
       </div>
-    </div>
-  )
-}
-
-function Colors() {
-  const { colors, setColor, pattern, garment } = useDesignStore()
-  const [sel, setSel] = useState<ColorPart>('primary')
-  const solo = garment === 'shorts'
-  // Las partes cambian según la prenda: el short suelto usa Base/Patrón/Cinturilla.
-  const parts: { id: ColorPart; label: string }[] = [
-    { id: 'primary', label: solo ? 'Short' : pattern === 'solid' ? 'Cuerpo' : 'Base' },
-    ...(pattern !== 'solid' ? [{ id: 'accent' as ColorPart, label: 'Patrón' }] : []),
-    ...(solo ? [{ id: 'collar' as ColorPart, label: 'Cinturilla' }] : [{ id: 'sleeves' as ColorPart, label: 'Mangas' }, { id: 'collar' as ColorPart, label: 'Cuello' }]),
-    { id: 'secondary', label: 'Detalles' },
-    ...(garment === 'set' ? [{ id: 'shorts' as ColorPart, label: 'Short' }] : []),
-  ]
-  const part = parts.some((p) => p.id === sel) ? sel : 'primary'
-  const is = (c: string) => colors[part].toLowerCase() === c.toLowerCase()
-  return (
-    <div className="space-y-4">
-      <div className="flex gap-2 overflow-x-auto [scrollbar-width:none]">
-        {parts.map((p) => (
-          <button key={p.id} onClick={() => setSel(p.id)} aria-pressed={part === p.id}
-            className={`flex h-10 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors ${part === p.id ? 'border-white bg-white text-[#050505]' : 'border-white/15 text-[#D4D4D4]'}`}>
-            <span className="size-3.5 rounded-full border border-black/20" style={{ background: colors[p.id] }} />{p.label}
-          </button>
-        ))}
-      </div>
-      <div className="grid grid-cols-6 gap-2.5">
-        {PALETTE.map((c) => (
-          <button key={c} onClick={() => setColor(part, c)} aria-label={`Color ${c}`} aria-pressed={is(c)}
-            className={`aspect-square rounded-full border-2 transition-transform ${is(c) ? 'scale-110 border-white' : 'border-white/15'}`} style={{ background: c }} />
-        ))}
-      </div>
-      <label className="flex items-center justify-between rounded-xl border border-white/10 bg-[#141414] p-3 text-sm font-semibold">
-        Color personalizado
-        <input type="color" value={colors[part]} onChange={(e) => setColor(part, e.target.value)} className="h-9 w-14 cursor-pointer rounded-lg border-0 bg-transparent" />
-      </label>
     </div>
   )
 }
@@ -114,7 +76,7 @@ export default function ToolPanel({ tool }: { tool: ToolId }) {
     case 'club': return <ClubPanel />
     case 'garment': return <Garments />
     case 'pattern': return <PatternPanel />
-    case 'color': return <Colors />
+    case 'color': return <ColorPanel />
     case 'player': return <Player />
     default: return <Soon id={tool} />
   }

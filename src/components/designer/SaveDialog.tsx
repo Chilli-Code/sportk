@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Check, X } from 'lucide-react'
+import { notify } from '../../lib/notify'
 import { useDesignStore } from '../../stores/designStore'
 
 /** Guardado simulado (solo estado local). Después se conecta al backend. */
@@ -9,7 +10,7 @@ export default function SaveDialog() {
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
 
-  const save = () => { setDone(true); setTimeout(() => { setOpen(false); setDone(false) }, 1100) }
+  const save = () => { notify.success({ title: 'Diseño guardado', description: name.trim() }); setDone(true); setTimeout(() => { setOpen(false); setDone(false) }, 1100) }
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
